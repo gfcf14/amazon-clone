@@ -1,11 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useStateValue } from 'helpers/state-provider';
 import { logoImage } from 'images';
 import './header.scss';
 
 export function Header() {
+  const [{ cart, user }, dispatch] = useStateValue();
+
   return (
     <div className='header'>
-      <img className='header__logo' src={logoImage} alt='header-logo' />
+      <Link to='/'>
+        <img className='header__logo' src={logoImage} alt='header-logo' />
+      </Link>
 
       <div className='header__search'>
         <input className='header__searchInput' type='text' />
@@ -28,10 +34,14 @@ export function Header() {
           <span className='header_optionLineTwo'>Prime</span>
         </div>
 
-        <div className='header__optionCart'>
-          <button className='header__cartButton'>CART</button>
-          <span className='header__optionLineTwo header__cartCount'>0</span>
-        </div>
+        <Link to='/checkout'>
+          <div className='header__optionCart'>
+            <button className='header__cartButton'>CART</button>
+            <span className='header__optionLineTwo header__cartCount'>
+              {cart?.length}
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   );
