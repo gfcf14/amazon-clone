@@ -37,7 +37,7 @@ export function Product(props) {
         </p>
         <div className='product__rating'>
           {Array(rating).fill().map((_, i) => {
-            return <p>🌟</p>;
+            return <p key={i}>🌟</p>;
           })}
         </div>
       </div>
