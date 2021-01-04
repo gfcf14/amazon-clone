@@ -12,6 +12,8 @@ export function CheckoutProduct(props) {
     title
   } = props;
 
+  const [{ cart }, dispatch] = useStateValue();
+
   const removeFromCart = () => {
     // remove the item from the cart
     dispatch({
@@ -32,9 +34,7 @@ export function CheckoutProduct(props) {
         </p>
 
         <div className='checkout-product__rating'>
-          {Array(rating).fill().map((_, i) => {
-            return <p key={i}>🌟</p>;
-          })}
+          {Array(rating).fill().map((_, i) => ( <p key={i}>🌟</p> ))}
         </div>
 
         {!hideButton && (<button onClick={removeFromCart}>Remove from Cart</button>)}
